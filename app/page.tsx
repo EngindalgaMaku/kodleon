@@ -2,6 +2,7 @@ import Link from "next/link";
 import { WhatsAppIcon } from "@/components/chrome";
 import { JsonLd } from "@/components/json-ld";
 import { Phone } from "@/components/phone";
+import { ProductTour } from "@/components/product-tour";
 import { APPS, NEXT_SECTORS, shotSrc, type AppEntry } from "@/lib/apps";
 import { SITE_URL, whatsappLink } from "@/lib/site";
 
@@ -109,6 +110,15 @@ export default function HomePage() {
           {APPS.map((app, i) => (
             <AppShowcase key={app.slug} app={app} index={i} />
           ))}
+        </div>
+      </section>
+
+      {/* Tour */}
+      <section id="tur" className="border-t border-line bg-[#ece7dc]">
+        <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+          <h2 className="max-w-2xl font-display text-4xl font-bold tracking-tight sm:text-5xl">Bir iş günü nasıl geçer?</h2>
+          <p className="mt-3 max-w-xl text-lg text-muted">Gerçek ekranlarla, adım adım.</p>
+          <ProductTour />
         </div>
       </section>
 

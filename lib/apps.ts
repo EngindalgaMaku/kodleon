@@ -19,6 +19,10 @@ export interface AppEntry {
   highlights: string[];
   features: Array<{ title: string; text: string }>;
   shots: AppShot[];
+  /** The home page walks through these screens */
+  tour: AppShot[];
+  /** Longer text for people searching for this kind of program */
+  guide: Array<{ title: string; text: string[] }>;
   /** Colours of the app itself, so its card and page look like it */
   theme: { bg: string; panel: string; text: string; muted: string; line: string; accent: string; accentText: string };
   links: { demo: string; signUp: string; apk: string };
@@ -53,6 +57,49 @@ export const APPS: AppEntry[] = [
       { file: "hizmetler", title: "Hizmetler", text: "Fiyat, süre ve garanti" },
       { file: "kasa", title: "Kasa", text: "Gelir, gider ve net" },
     ],
+    tour: [
+      {
+        "file": "bugun",
+        "title": "Güne bakın",
+        "text": "Atölyede kaç araç var, hangisi teslime hazır, bugün kim gelecek; açar açmaz görünür."
+      },
+      {
+        "file": "hasar",
+        "title": "Aracı kayda alın",
+        "text": "Plakayı yazın. Hasarı şemada işaretleyip fotoğraflayın, boya kalınlığını girin. Müşteri bağlantıdan onaylar."
+      },
+      {
+        "file": "atolye",
+        "title": "İşi takip edin",
+        "text": "Araç yıkamadan detailinge, son kontrolden teslime panoda ilerler. Usta ve istasyon üzerinde yazar."
+      },
+      {
+        "file": "belge",
+        "title": "Garantiyle teslim edin",
+        "text": "Girdiğiniz ürün ve garanti süresi belgeye dönüşür. Müşteri bağlantıdan açar, isterse yazdırır."
+      }
+    ],
+    guide: [
+      {
+        "title": "Oto yıkama ve detailing programı ne işe yarar?",
+        "text": [
+          "Detailing atölyesinde iş yalnızca aracı temizlemek değildir. Araç geldiğinde üzerindeki çizik kayda geçmezse teslimde tartışma çıkar. Seramik veya PPF yapıldığında hangi ürünün, kaç kat, ne kadar garantiyle uygulandığı aylar sonra sorulur. Müşteri de gün içinde aracının ne durumda olduğunu öğrenmek için arar.",
+          "AutoPro bu işleri tek yerde toplar. Araç plakayla açılır; önceki işleri, müşterisi ve borcu karşınıza gelir. Fiyatlar sedan, SUV gibi araç sınıfına göre hesaplanır, fiyat listesini atölye kendisi belirler."
+        ]
+      },
+      {
+        "title": "Hasar kaydı neden önemli?",
+        "text": [
+          "Teslimde çıkan \"bu çizik yoktu\" tartışması, kabulde birkaç dakikalık kayıtla önlenebilir. AutoPro'da hasarı araç şemasında işaretler, fotoğrafını çeker, boya kalınlığı ölçümünü parça parça yazarsınız. Müşteri aynı kaydı kendi telefonundan görür ve onaylar; onaydan sonra kayıt değiştirilemez."
+        ]
+      },
+      {
+        "title": "Müşteri sizi aramadan aracının durumunu görür",
+        "text": [
+          "Her iş için üyelik gerektirmeyen bir takip bağlantısı oluşur ve WhatsApp'tan tek dokunuşla gönderilir. Müşteri aracının hangi aşamada olduğunu, yapılan işleri, kalan ödemeyi ve varsa önceki ve sonraki fotoğrafları görür. Teslimden sonra garanti belgesi de aynı bağlantıdadır."
+        ]
+      }
+    ],
     theme: { bg: "#0b0e14", panel: "#171c26", text: "#f8fafc", muted: "#a3aebd", line: "#2b3447", accent: "#ffb020", accentText: "#140d00" },
     links: {
       demo: "https://autopro.kodleon.com/",
@@ -85,6 +132,49 @@ export const APPS: AppEntry[] = [
       { file: "takip", title: "Müşteri takibi", text: "Üyeliksiz bağlantı" },
       { file: "kasa", title: "Kasa", text: "Gelir, gider ve net" },
       { file: "musteriler", title: "Müşteriler", text: "Geçmiş ve bakiye" },
+    ],
+    tour: [
+      {
+        "file": "panel",
+        "title": "Güne bakın",
+        "text": "Kaç halı alınacak, kaçı yıkamada, kaçı dağıtılacak, kimden ne kadar alacağınız var; ana ekranda sayılarıyla."
+      },
+      {
+        "file": "siparisler",
+        "title": "Siparişi yazın",
+        "text": "Müşteriyi seçin, işi girin. Sipariş alınacaktan teslime kadar duruma göre listelenir."
+      },
+      {
+        "file": "rota",
+        "title": "Rotayı çizin",
+        "text": "Alınacak ve dağıtılacak adresler en kısa sıraya konur. Şoför tek dokunuşla haritada açar, teslimi oradan işaretler."
+      },
+      {
+        "file": "takip",
+        "title": "Müşteri takip etsin",
+        "text": "Müşteri bağlantıyı açar, halısının hangi aşamada olduğunu üye olmadan görür."
+      }
+    ],
+    guide: [
+      {
+        "title": "Halı yıkama programı ne işe yarar?",
+        "text": [
+          "Halı yıkamada işin büyük kısmı yolda döner: adresten alınır, yıkamaya girer, kurur, yeniden adrese gider. Defterle çalışınca hangi halının nerede olduğu, şoförün bugün nereye gideceği ve kimden ne kadar alınacağı kafada kalır. Müşteri de \"halım ne zaman gelir?\" diye arar.",
+          "LaundryPro siparişi, müşteriyi, rotayı ve kasayı aynı yerde tutar. Ofiste yazılan sipariş şoförün telefonunda görünür; şoför teslimi işaretlediğinde ofis de görür."
+        ]
+      },
+      {
+        "title": "Şoför rotası nasıl çalışır?",
+        "text": [
+          "Rota ekranı alınacak ve dağıtılacak adresleri toplar, işletmeden başlayarak en kısa sıraya koyar ve yaklaşık mesafeyi gösterir. Sırayı elle değiştirebilir, tüm rotayı tek dokunuşla haritada açabilirsiniz. Her durakta aramak, yol tarifi almak ve alındı ya da teslim edildi demek tek dokunuştur."
+        ]
+      },
+      {
+        "title": "QR etiket karışıklığı azaltır",
+        "text": [
+          "Termal fiş ve halı etiketi QR kodlu yazdırılır. Telefon kamerasıyla okutunca sipariş açılır, böylece yıkamada ya da depoda hangi halının kime ait olduğunu aramak gerekmez. Müşteriye de fişteki kodla ya da WhatsApp'tan gönderilen bağlantıyla kendi siparişini izleme imkânı verir."
+        ]
+      }
     ],
     theme: { bg: "#0a5c99", panel: "#0d6cb3", text: "#ffffff", muted: "#d3e6f5", line: "#3f89c0", accent: "#ffffff", accentText: "#0a4a7a" },
     links: {

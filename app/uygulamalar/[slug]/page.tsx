@@ -103,7 +103,18 @@ export default async function AppPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-2 lg:px-8 lg:py-20">
+      <section className="mx-auto max-w-3xl px-5 py-14 lg:py-20">
+        {app.guide.map((g) => (
+          <div key={g.title} className="mt-12 first:mt-0">
+            <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">{g.title}</h2>
+            {g.text.map((p) => (
+              <p key={p.slice(0, 40)} className="mt-4 text-lg leading-relaxed text-muted">{p}</p>
+            ))}
+          </div>
+        ))}
+      </section>
+
+      <section className="mx-auto grid max-w-7xl gap-10 px-5 pb-14 lg:grid-cols-2 lg:px-8 lg:pb-20">
         <div>
           <h2 className="font-display text-4xl font-bold tracking-tight">Kimler için</h2>
           <ul className="mt-6 flex flex-wrap gap-2.5">

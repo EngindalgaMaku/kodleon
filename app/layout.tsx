@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Inter } from "next/font/google";
 import { Footer, Header } from "@/components/chrome";
+import { VisitCounter } from "@/components/visit-counter";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main>{children}</main>
         <Footer />
+        <VisitCounter />
       </body>
     </html>
   );

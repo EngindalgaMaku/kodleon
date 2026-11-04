@@ -17,3 +17,7 @@ Kart, sayfa, başlık ve site haritası kendiliğinden oluşur.
 ## Yayın
 
 Coolify'da `npm run build` ve `npm start`. WhatsApp numarası `lib/site.ts` içindedir.
+
+## Ziyaretçi sayacı
+
+Çerezsiz, kişi bilgisi tutmaz. Görmek için `STATS_KEY` ortam değişkenine uzun bir değer verin, `https://kodleon.com/istatistik?key=<değer>` adresini açın. Sayılar `STATS_DIR` klasöründe (varsayılan `storage/stats`) durur; yayınlar arasında korunması için bu klasöre kalıcı disk bağlanmalıdır.

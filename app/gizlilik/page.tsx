@@ -8,6 +8,7 @@ export default function PrivacyPage() {
       <h1 className="font-display text-5xl font-bold tracking-tight">Gizlilik</h1>
       <div className="mt-8 space-y-4 text-lg leading-relaxed text-muted">
         <p>Bu tanıtım sitesinde üyelik veya form yoktur, reklam ve takip çerezi kullanılmaz.</p>
+        <p>Sitenin ilgi görüp görmediğini anlamak için günlük toplam sayfa açılışı ve düğme basışı sayılır. Bu sayaç çerez kullanmaz, IP adresi veya kişiyi tanıtan bir bilgi kaydetmez.</p>
         <p>
           WhatsApp düğmesine bastığınızda WhatsApp açılır; yazdıklarınız WhatsApp'ın kendi koşullarına tabidir ve yalnızca size cevap vermek için kullanılır.
         </p>

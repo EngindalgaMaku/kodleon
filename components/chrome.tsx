@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileMenu } from "@/components/mobile-menu";
 import { whatsappLink } from "@/lib/site";
 
 export function Logo({ light = false }: { light?: boolean }) {
@@ -31,9 +32,10 @@ export function Header() {
         </Link>
         <nav aria-label="Ana menü" className="hidden items-center gap-8 text-[15px] font-medium text-ink/80 md:flex">
           <Link href="/#uygulamalar" className="inline-flex min-h-11 items-center hover:text-ink">Uygulamalar</Link>
-          <Link href="/#nasil" className="inline-flex min-h-11 items-center hover:text-ink">Nasıl çalışır</Link>
+          <Link href="/#tur" className="inline-flex min-h-11 items-center hover:text-ink">Nasıl çalışıyor</Link>
           <Link href="/#sirada" className="inline-flex min-h-11 items-center hover:text-ink">Sıradaki sektörler</Link>
         </nav>
+        <div className="flex items-center gap-2">
         <a
           href={whatsappLink("Merhaba, Kodleon uygulamaları hakkında bilgi almak istiyorum.")}
           target="_blank"
@@ -43,6 +45,8 @@ export function Header() {
           <WhatsAppIcon className="h-4 w-4" />
           <span>Yazın</span>
         </a>
+        <MobileMenu />
+        </div>
       </div>
     </header>
   );
