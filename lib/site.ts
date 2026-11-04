@@ -4,3 +4,6 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://kodleon.com
 const WHATSAPP_NUMBER = "905465867927";
 
 export const whatsappLink = (message: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+/** For an app that is not open yet */
+export const notifyLink = (appName: string) => whatsappLink(`Merhaba, ${appName} çıkınca haber almak istiyorum. İşletmem: `);

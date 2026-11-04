@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Phone } from "@/components/phone";
+import { WhatsAppIcon } from "@/components/chrome";
 import { APPS, shotSrc } from "@/lib/apps";
+import { notifyLink } from "@/lib/site";
 
 // The opening of the home page. A notebook page turns into the app's records, one line at a
 // time, and the visitor picks their own trade. The notes are made-up examples; every card
@@ -82,12 +84,26 @@ export function LedgerStory() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href={app.links.demo} className="inline-flex min-h-13 items-center rounded-full bg-ink px-7 text-[17px] font-semibold text-paper transition hover:bg-ink/85">
-              {app.name} demosunu açın
-            </a>
-            <a href={app.links.signUp} className="inline-flex min-h-13 items-center rounded-full border border-ink/20 bg-card px-7 text-[17px] font-semibold transition hover:border-ink/50">
-              Kaydolun, 1 ay ücretsiz
-            </a>
+            {app.soon ? (
+              <>
+                <Link href={`/uygulamalar/${app.slug}`} className="inline-flex min-h-13 items-center rounded-full bg-ink px-7 text-[17px] font-semibold text-paper transition hover:bg-ink/85">
+                  {app.name}: yakında
+                </Link>
+                <a href={notifyLink(app.name)} data-hit={`talep:${app.slug}`} target="_blank" rel="noreferrer" className="inline-flex min-h-13 items-center gap-2 rounded-full border border-ink/20 bg-card px-7 text-[17px] font-semibold transition hover:border-ink/50">
+                  <WhatsAppIcon />
+                  Çıkınca haber verin
+                </a>
+              </>
+            ) : (
+              <>
+                <a href={app.links.demo} className="inline-flex min-h-13 items-center rounded-full bg-ink px-7 text-[17px] font-semibold text-paper transition hover:bg-ink/85">
+                  {app.name} demosunu açın
+                </a>
+                <a href={app.links.signUp} className="inline-flex min-h-13 items-center rounded-full border border-ink/20 bg-card px-7 text-[17px] font-semibold transition hover:border-ink/50">
+                  Kaydolun, 1 ay ücretsiz
+                </a>
+              </>
+            )}
           </div>
         </div>
 

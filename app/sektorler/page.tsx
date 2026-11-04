@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { WhatsAppIcon } from "@/components/chrome";
 import { SectorRequests } from "@/components/sector-requests";
+import { SoonBadge } from "@/components/soon-badge";
 import { TrialSteps } from "@/components/trial-steps";
 import { APPS } from "@/lib/apps";
+import { notifyLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Sektörler",
@@ -18,7 +21,7 @@ export default function SectorsPage() {
         <p className="mt-4 max-w-xl text-lg text-muted">Hazır olanların demosunu hemen inceleyin. Sizin işiniz henüz yoksa talep edin.</p>
         <h2 className="mt-12 font-display text-3xl font-bold tracking-tight">Hazır</h2>
         <ul className="mt-5 grid gap-5 md:grid-cols-2">
-          {APPS.map((app) => (
+          {APPS.filter((a) => !a.soon).map((app) => (
             <li key={app.slug} data-testid={`sector-${app.slug}`} style={{ background: app.theme.bg, color: app.theme.text }} className="flex flex-col rounded-[2rem] p-7 sm:p-9">
               <p style={{ color: app.theme.muted }} className="text-sm font-medium">{app.sector}</p>
               <h3 className="mt-2 font-display text-4xl font-bold tracking-tight">{app.name}</h3>
@@ -29,6 +32,28 @@ export default function SectorsPage() {
                 </a>
                 <a href={app.links.signUp} style={{ borderColor: app.theme.line }} className="inline-flex min-h-12 items-center rounded-full border px-5 font-semibold transition hover:bg-white/10">
                   Kaydolun, 1 ay ücretsiz
+                </a>
+              </div>
+              <Link href={`/uygulamalar/${app.slug}`} style={{ color: app.theme.muted }} className="mt-3 inline-flex min-h-11 items-center self-start font-medium underline-offset-4 hover:underline">
+                {app.name} sayfası
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <h2 className="mt-12 font-display text-3xl font-bold tracking-tight">Yakında</h2>
+        <ul className="mt-5 grid gap-5 md:grid-cols-2">
+          {APPS.filter((a) => a.soon).map((app) => (
+            <li key={app.slug} data-testid={`sector-${app.slug}`} style={{ background: app.theme.bg, color: app.theme.text }} className="flex flex-col rounded-[2rem] p-7 sm:p-9">
+              <p style={{ color: app.theme.muted }} className="flex flex-wrap items-center gap-2 text-sm font-medium">
+                {app.sector}
+                <SoonBadge theme={app.theme} />
+              </p>
+              <h3 className="mt-2 font-display text-4xl font-bold tracking-tight">{app.name}</h3>
+              <p className="mt-3 flex-1 text-lg leading-snug">{app.headline}</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a href={notifyLink(app.name)} data-hit={`talep:${app.slug}`} target="_blank" rel="noreferrer" style={{ background: app.theme.accent, color: app.theme.accentText }} className="inline-flex min-h-12 items-center gap-2 rounded-full px-6 font-semibold transition hover:opacity-90">
+                  <WhatsAppIcon />
+                  Çıkınca haber verin
                 </a>
               </div>
               <Link href={`/uygulamalar/${app.slug}`} style={{ color: app.theme.muted }} className="mt-3 inline-flex min-h-11 items-center self-start font-medium underline-offset-4 hover:underline">

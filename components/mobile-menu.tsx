@@ -40,7 +40,7 @@ export function MobileMenu() {
               <li key={a.slug}>
                 <Link onClick={close} href={`/uygulamalar/${a.slug}`} className="flex min-h-13 items-center justify-between gap-3 pl-4">
                   {a.name}
-                  <span className="text-right text-sm font-normal text-muted">{a.sector}</span>
+                  <span className="text-right text-sm font-normal text-muted">{a.soon ? "Yakında" : a.sector}</span>
                 </Link>
               </li>
             ))}

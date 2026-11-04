@@ -8,7 +8,7 @@ const send = (key: string) => navigator.sendBeacon?.("/api/hit", key);
 
 function clickKey(href: string) {
   if (href.includes("wa.me/")) return "click:whatsapp";
-  for (const a of APPS) {
+  for (const a of APPS.filter((x) => !x.soon)) {
     if (href === a.links.apk) return `click:apk:${a.slug}`;
     if (href === a.links.demo) return `click:demo:${a.slug}`;
     if (href === a.links.signUp) return `click:kayit:${a.slug}`;

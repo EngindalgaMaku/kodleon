@@ -23,6 +23,7 @@ export const ALLOWED_KEYS = new Set([
   "click:whatsapp",
   ...APPS.flatMap((a) => [`view:/uygulamalar/${a.slug}`, `click:demo:${a.slug}`, `click:kayit:${a.slug}`, `click:apk:${a.slug}`]),
   ...NEXT_SECTORS.map((s) => `click:talep:${s.slug}`),
+  ...APPS.filter((a) => a.soon).map((a) => `click:talep:${a.slug}`),
 ]);
 
 let cache: Stats | null = null;

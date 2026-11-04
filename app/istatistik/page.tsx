@@ -22,7 +22,9 @@ const LABELS: Record<string, string> = {
   "view:/sektorler": "Sektörler",
   "click:deneme:genel": "1 ay ücretsiz (genel)",
   "click:talep:diger": "Talep: listede olmayan sektör",
+  "click:talep:pet-kuafor": "Talep: Pet kuaförü",
   ...Object.fromEntries(NEXT_SECTORS.map((s) => [`click:talep:${s.slug}`, `Talep: ${s.name}`])),
+  ...Object.fromEntries(APPS.filter((a) => a.soon).map((a) => [`click:talep:${a.slug}`, `${a.name}: çıkınca haber ver`])),
   "click:whatsapp": "WhatsApp düğmesi",
   ...Object.fromEntries(
     APPS.flatMap((a) => [

@@ -1,12 +1,14 @@
 import Link from "next/link";
+import { WhatsAppIcon } from "@/components/chrome";
 import { JsonLd } from "@/components/json-ld";
+import { SoonBadge } from "@/components/soon-badge";
 import { LedgerStory } from "@/components/ledger-story";
 import { Phone } from "@/components/phone";
 import { ProductTour } from "@/components/product-tour";
 import { SectorRequests } from "@/components/sector-requests";
 import { TrialSteps } from "@/components/trial-steps";
 import { APPS, shotSrc, type AppEntry } from "@/lib/apps";
-import { SITE_URL } from "@/lib/site";
+import { notifyLink, SITE_URL } from "@/lib/site";
 
 const SHARED = [
   { title: "Sektörünüzün diliyle", text: "Halı yıkamada rota ve etiket, detailingde plaka ve hasar şeması. Ekranlar genel bir programdan uyarlanmaz, o işe göre kurulur." },
@@ -24,7 +26,10 @@ function AppShowcase({ app, index }: { app: AppEntry; index: number }) {
       className="relative grid overflow-hidden rounded-[2rem] lg:grid-cols-2"
     >
       <div className={`flex flex-col justify-center p-7 sm:p-12 ${index % 2 ? "lg:order-2" : ""}`}>
-        <p style={{ color: theme.muted }} className="text-sm font-medium">{app.sector}</p>
+        <p style={{ color: theme.muted }} className="flex flex-wrap items-center gap-2 text-sm font-medium">
+          {app.sector}
+          {app.soon && <SoonBadge theme={theme} />}
+        </p>
         <h3 className="mt-3 font-display text-4xl font-bold tracking-tight sm:text-5xl">{app.name}</h3>
         <p className="mt-4 max-w-md font-display text-xl font-medium leading-snug sm:text-2xl">{app.headline}</p>
         <ul className="mt-6 space-y-2.5">
@@ -36,9 +41,16 @@ function AppShowcase({ app, index }: { app: AppEntry; index: number }) {
           ))}
         </ul>
         <div className="mt-8 flex flex-wrap gap-3">
-          <a href={app.links.demo} style={{ background: theme.accent, color: theme.accentText }} className="inline-flex min-h-12 items-center rounded-full px-6 font-semibold transition hover:opacity-90">
-            Demoyu dene
-          </a>
+          {app.soon ? (
+            <a href={notifyLink(app.name)} data-hit={`talep:${app.slug}`} target="_blank" rel="noreferrer" style={{ background: theme.accent, color: theme.accentText }} className="inline-flex min-h-12 items-center gap-2 rounded-full px-6 font-semibold transition hover:opacity-90">
+              <WhatsAppIcon />
+              Çıkınca haber verin
+            </a>
+          ) : (
+            <a href={app.links.demo} style={{ background: theme.accent, color: theme.accentText }} className="inline-flex min-h-12 items-center rounded-full px-6 font-semibold transition hover:opacity-90">
+              Demoyu dene
+            </a>
+          )}
           <Link href={`/uygulamalar/${app.slug}`} style={{ borderColor: theme.line }} className="inline-flex min-h-12 items-center rounded-full border px-6 font-semibold transition hover:bg-white/10">
             {app.name} sayfası
           </Link>
@@ -70,7 +82,7 @@ export default function HomePage() {
       {/* Apps */}
       <section id="uygulamalar" className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
         <h2 className="max-w-2xl font-display text-4xl font-bold tracking-tight sm:text-5xl">Sektörünüze özel çözümler</h2>
-        <p className="mt-3 max-w-xl text-lg text-muted">Her biri kendi sektörüne göre yapıldı. Demo hesapları örnek verilerle dolu, tek dokunuşla açılır.</p>
+        <p className="mt-3 max-w-xl text-lg text-muted">Her biri kendi sektörüne göre yapıldı. Hazır olanların demosu örnek verilerle dolu, tek dokunuşla açılır.</p>
         <div className="mt-10 space-y-6">
           {APPS.map((app, i) => (
             <AppShowcase key={app.slug} app={app} index={i} />

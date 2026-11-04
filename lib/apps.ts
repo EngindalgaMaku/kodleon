@@ -10,6 +10,8 @@ export interface AppShot {
 export interface AppEntry {
   slug: string;
   name: string;
+  /** Announced but not open yet: no demo, sign-up or APK links, its buttons ask to be told */
+  soon?: boolean;
   sector: string;
   /** What people type into Google; used in the page title and heading */
   searchName: string;
@@ -210,11 +212,79 @@ export const APPS: AppEntry[] = [
       apk: "https://laundry.kodleon.com/LaundryPro.apk",
     },
   },
+  {
+    slug: "petpro",
+    name: "PetPro",
+    soon: true,
+    sector: "Pet kuaförü",
+    searchName: "Pet kuaför programı",
+    headline: "Kesim notu, alerji ve randevu tek kartta; sahibi de bakımı takip eder.",
+    summary:
+      "Pet kuaförleri için online randevu, hayvan kartı, kabul muayenesi, salon panosu, sahibine takip bağlantısı, bakım karnesi ve kasa.",
+    audience: ["Pet kuaförleri", "Köpek ve kedi bakım salonları", "Petshop içindeki kuaförler"],
+    highlights: ["Müşteri boş saati görür, siz onaylarsınız", "Hayvan kartı ve geçen seferki kesim", "Kabul muayenesi ve bakım karnesi"],
+    features: [
+      { title: "Online randevu", text: "Instagram'a koyacağınız bağlantıdan müşteri boş saatleri görür, talep bırakır. Siz onaylarsınız, ödeme alınmaz." },
+      { title: "Hayvan kartı", text: "Irk, boy, mizaç, alerji, aşı bitiş tarihi ve kilo; aşısı geçmiş hayvanda uyarı çıkar." },
+      { title: "Geçen seferki kesim", text: "Sahibinin telefonunu yazınca hayvanı gelir. Kesim, uzunluk ve şampuan önceki ziyaretten görünür." },
+      { title: "Kabul muayenesi", text: "Keçe, kızarıklık, pire gibi gördüklerinizi vücut şemasında işaretleyin. Sahibi bağlantıdan onaylar. Kayıt teşhis değildir." },
+      { title: "Salon panosu", text: "Kim yıkamada, kim masada, kim hazır; kuaför ve istasyonuyla tek ekranda." },
+      { title: "Sahibine takip bağlantısı", text: "Hayvanın sahibi üye olmadan bakımın hangi aşamada olduğunu ve kalan tutarı görür." },
+      { title: "Bakım karnesi", text: "Teslimden sonra ziyaretler, yapılan işler ve sıradaki bakım tarihi aynı bağlantıda." },
+      { title: "Kasa ve kuaför primi", text: "Gelir, gider ve net; primler teslim edilen işlerden hesaplanır." },
+    ],
+    shots: [
+      { file: "bugun", title: "Bugün", text: "Günün özeti ve sıradaki işler" },
+      { file: "salon", title: "Salon panosu", text: "Hayvanlar aşamalara göre" },
+      { file: "randevu", title: "Online randevu", text: "Müşterinin gördüğü sayfa" },
+      { file: "muayene", title: "Kabul muayenesi", text: "Vücut şemasında işaretler" },
+      { file: "karne", title: "Bakım karnesi", text: "Sahibinin açtığı sayfa" },
+      { file: "kasa", title: "Kasa", text: "Gelir, gider ve net" },
+    ],
+    tour: [
+      { file: "randevu", title: "Randevu gelsin", text: "Müşteri bağlantıdan hizmeti ve boş saati seçer. Talep onayınıza düşer." },
+      { file: "bugun", title: "Güne bakın", text: "Salonda kim var, kim hazır, bugün kim gelecek; açar açmaz görünür." },
+      { file: "muayene", title: "Hayvanı kayda alın", text: "Gördüklerinizi vücut şemasında işaretleyin. Sahibi bağlantıdan onaylar." },
+      { file: "karne", title: "Karneyle teslim edin", text: "Yapılan işler ve sıradaki bakım tarihi sahibinin bağlantısında durur." },
+    ],
+    guide: [
+      {
+        title: "Pet kuaför programı ne işe yarar?",
+        text: [
+          "Pet kuaförlüğünde iş tıraşla bitmez. Geçen sefer kaç milimetre kesildiği, hangi şampuanın dokunduğu, hayvanın ısırıp ısırmadığı kuaförün aklında kalır. Randevular Instagram mesajlarına dağılır, müşteri de gün içinde bakımın ne durumda olduğunu sormak için arar.",
+          "PetPro bu işleri tek yerde toplar. Sahibinin telefonunu yazınca hayvanları ve son bakımı gelir. Fiyatlar kediden dev köpeğe boy sınıfına göre hesaplanır, fiyat listesini salon kendisi belirler.",
+        ],
+      },
+      {
+        title: "Online randevu nasıl çalışır?",
+        text: [
+          "Her salonun bir bağlantısı olur. Müşteri üye olmadan hayvanının boyunu ve hizmeti seçer, işin süresine göre hesaplanan boş saatleri görür ve talep bırakır. Talep o saati tutar, salon onaylayınca randevu kesinleşir. Çalışma saatlerini ve kapalı günleri salon belirler.",
+        ],
+      },
+      {
+        title: "Kabul muayenesi neden önemli?",
+        text: [
+          "Hayvan geldiğinde görülen keçe, kızarıklık ya da pire kayda geçmezse teslimde tartışma çıkabilir. PetPro'da bunları vücut şemasında işaretler, fotoğrafını çekersiniz; sahibi kendi telefonundan görür ve onaylar. Bu kayıt teşhis değildir, kuaförün gördüğünü not eder.",
+        ],
+      },
+    ],
+    story: {
+      choice: "Pet kuaförü",
+      pain: "Kağıtta kalan kesim notu, unutulan alerji, mesajlarda kaybolan randevu.",
+      screen: "bugun",
+      lines: [
+        { note: "Pamuk geçen sefer kaç mm'ydi?", card: "Kesim geçmişi", detail: "Kabulde kendiliğinden gelir" },
+        { note: "Zeytin'in alerjisi vardı sanki", card: "Hayvan kartı", detail: "Irk, mizaç, alerji, aşı tarihi" },
+        { note: "Instagram'dan yazdılar: yarın?", card: "Online randevu", detail: "Boş saati görür, siz onaylarsınız" },
+      ],
+    },
+    theme: { bg: "#0f3d3e", panel: "#14504f", text: "#ffffff", muted: "#b9dcd8", line: "#2f7472", accent: "#2dd4bf", accentText: "#04201c" },
+    links: { demo: "", signUp: "", apk: "" },
+  },
 ];
 
 /** Sectors planned next. Not promises of a date: requests for them decide the order */
 export const NEXT_SECTORS = [
-  { slug: "pet-kuafor", name: "Pet kuaförü", text: "Hayvan kartı, randevu, bakım karnesi" },
   { slug: "oto-tamir", name: "Oto tamir", text: "İş emri, parça ve müşteri takibi" },
   { slug: "teknik-servis", name: "Teknik servis", text: "Kombi, beyaz eşya, telefon" },
   { slug: "temizlik", name: "Ev ve ofis temizliği", text: "Ekip planı ve düzenli müşteri" },
