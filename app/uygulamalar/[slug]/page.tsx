@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { WhatsAppIcon } from "@/components/chrome";
+import { JsonLd } from "@/components/json-ld";
 import { Phone } from "@/components/phone";
 import { APPS, findApp, shotSrc } from "@/lib/apps";
-import { whatsappLink } from "@/lib/site";
+import { SITE_URL, whatsappLink } from "@/lib/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -16,9 +17,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const app = findApp((await params).slug);
   if (!app) return {};
   return {
-    title: `${app.name}: ${app.sector} uygulaması`,
+    title: `${app.searchName}: ${app.name}`,
     description: app.summary,
-    openGraph: { title: `${app.name} · ${app.sector}`, description: app.summary, images: [shotSrc(app, app.shots[0].file)] },
+    alternates: { canonical: `/uygulamalar/${app.slug}` },
+    openGraph: { title: `${app.searchName}: ${app.name}`, description: app.summary, images: [{ url: `/og/${app.slug}.jpg`, width: 1200, height: 630 }] },
   };
 }
 
@@ -30,10 +32,23 @@ export default async function AppPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: app.name,
+          description: app.summary,
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Web, Android",
+          url: `${SITE_URL}/uygulamalar/${app.slug}`,
+          image: `${SITE_URL}${shotSrc(app, app.shots[0].file)}`,
+          publisher: { "@type": "Organization", name: "Kodleon", url: SITE_URL },
+        }}
+      />
       <section style={{ background: theme.bg, color: theme.text }} className="overflow-hidden">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pt-12 lg:grid-cols-2 lg:px-8 lg:pt-16">
           <div className="rise pb-2 lg:pb-16">
-            <p style={{ color: theme.muted }} className="font-medium">{app.sector}</p>
+            <p style={{ color: theme.muted }} className="font-medium">{app.searchName}</p>
             <h1 className="mt-3 font-display text-6xl font-bold tracking-tight sm:text-7xl">{app.name}</h1>
             <p className="mt-5 max-w-xl font-display text-2xl font-medium leading-snug sm:text-3xl">{app.headline}</p>
             <p style={{ color: theme.muted }} className="mt-5 max-w-xl text-lg leading-relaxed">{app.summary}</p>
@@ -106,8 +121,27 @@ export default async function AppPage({ params }: Props) {
         </div>
       </section>
 
+      <section className="border-t border-line bg-card">
+        <div className="mx-auto max-w-3xl px-5 py-14 lg:py-20">
+          <h2 className="font-display text-4xl font-bold tracking-tight">Sık sorulanlar</h2>
+          <dl className="mt-8 space-y-7">
+            {[
+              ["Kurulum gerekiyor mu?", `Hayır. ${app.name} tarayıcıdan açılır, bilgisayara program kurmanız gerekmez. Android telefonlara uygulama olarak da kurulabilir.`],
+              ["Demoyu denemek için kayıt olmam gerekir mi?", "Hayır. Demo hesabı örnek verilerle dolu, dokununca açılır. Demoya girilen veriler her gece silinir, gerçek bilgi girmeyin."],
+              ["iPhone'da çalışır mı?", "Telefonun tarayıcısından kullanılabilir. Mağazadan kurulan ayrı bir iPhone uygulaması şimdilik yok."],
+              ["Birden fazla kişi kullanabilir mi?", "Evet. Sahibi, çalışanları ve sahadaki ekibi kendi hesabıyla girer, herkes aynı bilgiyi görür."],
+            ].map(([q, a]) => (
+              <div key={q}>
+                <dt className="font-display text-xl font-semibold">{q}</dt>
+                <dd className="mt-1.5 leading-relaxed text-muted">{a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {others.length > 0 && (
-        <section className="mx-auto max-w-7xl px-5 pb-16 lg:px-8">
+        <section className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <h2 className="font-display text-2xl font-bold">Diğer uygulamalar</h2>
           <ul className="mt-4 flex flex-wrap gap-3">
             {others.map((o) => (

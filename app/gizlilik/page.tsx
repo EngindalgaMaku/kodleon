@@ -1,6 +1,6 @@
 import { whatsappLink } from "@/lib/site";
 
-export const metadata = { title: "Gizlilik" };
+export const metadata = { title: "Gizlilik", alternates: { canonical: "/gizlilik" } };
 
 export default function PrivacyPage() {
   return (

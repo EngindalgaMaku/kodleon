@@ -11,6 +11,8 @@ export interface AppEntry {
   slug: string;
   name: string;
   sector: string;
+  /** What people type into Google; used in the page title and heading */
+  searchName: string;
   headline: string;
   summary: string;
   audience: string[];
@@ -27,6 +29,7 @@ export const APPS: AppEntry[] = [
     slug: "autopro",
     name: "AutoPro",
     sector: "Oto detailing ve oto kuaför",
+    searchName: "Oto yıkama ve detailing programı",
     headline: "Araç plakayla gelir, gerisini atölye panosu takip eder.",
     summary:
       "Kabulden teslime detailing atölyesinin bütün işi: hasar ve boya kaydı, PPF ve seramik ayrıntıları, müşteriye takip bağlantısı, garanti belgesi ve kasa.",
@@ -61,6 +64,7 @@ export const APPS: AppEntry[] = [
     slug: "laundrypro",
     name: "LaundryPro",
     sector: "Halı yıkama ve çamaşırhane",
+    searchName: "Halı yıkama ve çamaşırhane programı",
     headline: "Halı evden alınır, rotası hazırdır, müşteri nerede olduğunu bilir.",
     summary:
       "Halı yıkama ve kuru temizleme için sipariş, QR etiket, şoför rotası, WhatsApp takip bağlantısı ve kasa; ofiste ve sahada aynı uygulama.",

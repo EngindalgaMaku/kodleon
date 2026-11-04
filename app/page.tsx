@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { WhatsAppIcon } from "@/components/chrome";
+import { JsonLd } from "@/components/json-ld";
 import { Phone } from "@/components/phone";
 import { APPS, NEXT_SECTORS, shotSrc, type AppEntry } from "@/lib/apps";
-import { whatsappLink } from "@/lib/site";
+import { SITE_URL, whatsappLink } from "@/lib/site";
 
 const SHARED = [
   { title: "Sektörünüzün diliyle", text: "Halı yıkamada rota ve etiket, detailingde plaka ve hasar şeması. Ekranlar genel bir programdan uyarlanmaz, o işe göre kurulur." },
@@ -58,15 +59,24 @@ export default function HomePage() {
   const [first, second] = APPS;
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            { "@type": "Organization", name: "Kodleon", url: SITE_URL, logo: `${SITE_URL}/icon.svg` },
+            { "@type": "WebSite", name: "Kodleon", url: SITE_URL, inLanguage: "tr" },
+          ],
+        }}
+      />
       {/* Hero */}
       <section className="overflow-hidden">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-6 pt-12 lg:grid-cols-[1.1fr_1fr] lg:px-8 lg:pb-16 lg:pt-20">
           <div className="rise">
-            <h1 className="font-display text-[3.4rem] font-bold leading-[0.98] tracking-tight sm:text-7xl xl:text-[5.6rem]">
-              Her işin kendi <span className="text-ember">uygulaması.</span>
+            <h1 className="font-display text-[3.05rem] font-bold leading-[1] tracking-tight sm:text-7xl xl:text-[5.2rem]">
+              İşletmeniz için yazılım <span className="text-ember">çözümleri.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
-              Halı yıkamadan oto detailinge, işletmelerin günlük işine göre yapılan web ve Android uygulamaları. Anlatmak yerine gösterelim: demoyu açın, hemen deneyin.
+              Sipariş, müşteri, saha ve kasa takibi tek yerde. Telefondan da bilgisayardan da. Demoyu açın, kendi işinizle karşılaştırın.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="#uygulamalar" className="inline-flex min-h-13 items-center rounded-full bg-ink px-7 text-[17px] font-semibold text-paper transition hover:bg-ink/85">

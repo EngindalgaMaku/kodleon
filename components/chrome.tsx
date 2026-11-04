@@ -54,7 +54,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-12 sm:flex-row sm:items-center sm:justify-between lg:px-8">
         <div>
           <Logo light />
-          <p className="mt-3 max-w-sm text-sm text-paper/60">İşletmelerin günlük işine göre yapılan web ve Android uygulamaları.</p>
+          <p className="mt-3 max-w-sm text-sm text-paper/60">İşletmeler için yazılım çözümleri: web ve Android uygulamaları.</p>
         </div>
         <nav aria-label="Alt menü" className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-paper/70">
           <Link href="/#uygulamalar" className="inline-flex min-h-11 items-center hover:text-paper">Uygulamalar</Link>
