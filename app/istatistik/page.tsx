@@ -1,6 +1,6 @@
 import { timingSafeEqual } from "node:crypto";
 import { notFound } from "next/navigation";
-import { APPS } from "@/lib/apps";
+import { APPS, NEXT_SECTORS } from "@/lib/apps";
 import { dayKey, readStats } from "@/lib/stats";
 
 export const metadata = { title: "İstatistik", robots: { index: false, follow: false } };
@@ -19,6 +19,10 @@ function keyMatches(given: string | undefined) {
 const LABELS: Record<string, string> = {
   "view:/": "Ana sayfa",
   "view:/gizlilik": "Gizlilik",
+  "view:/sektorler": "Sektörler",
+  "click:deneme:genel": "1 ay ücretsiz (genel)",
+  "click:talep:diger": "Talep: listede olmayan sektör",
+  ...Object.fromEntries(NEXT_SECTORS.map((s) => [`click:talep:${s.slug}`, `Talep: ${s.name}`])),
   "click:whatsapp": "WhatsApp düğmesi",
   ...Object.fromEntries(
     APPS.flatMap((a) => [
@@ -26,6 +30,7 @@ const LABELS: Record<string, string> = {
       [`click:demo:${a.slug}`, `${a.name}: demo`],
       [`click:kayit:${a.slug}`, `${a.name}: kayıt`],
       [`click:apk:${a.slug}`, `${a.name}: APK`],
+      [`click:deneme:${a.slug}`, `${a.name}: 1 ay ücretsiz`],
     ])
   ),
 };

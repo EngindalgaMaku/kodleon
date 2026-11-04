@@ -23,6 +23,13 @@ export interface AppEntry {
   tour: AppShot[];
   /** Longer text for people searching for this kind of program */
   guide: Array<{ title: string; text: string[] }>;
+  /** The opening of the home page: the notebook lines (made-up examples) and what each becomes in the app */
+  story: {
+    choice: string;
+    pain: string;
+    screen: string;
+    lines: Array<{ note: string; card: string; detail: string }>;
+  };
   /** Colours of the app itself, so its card and page look like it */
   theme: { bg: string; panel: string; text: string; muted: string; line: string; accent: string; accentText: string };
   links: { demo: string; signUp: string; apk: string };
@@ -100,6 +107,16 @@ export const APPS: AppEntry[] = [
         ]
       }
     ],
+    story: {
+      choice: "Oto yıkama, detailing",
+      pain: "\"Bu çizik yoktu\" tartışması, unutulan garanti süresi, gün boyu çalan telefon.",
+      screen: "bugun",
+      lines: [
+        { note: "34 ABC 789 sol kapı çizik?", card: "Hasar kaydı", detail: "Şemada işaretli, müşteri onayladı" },
+        { note: "seramik garantisi kaç yıldı??", card: "Garanti belgesi", detail: "Ürün ve süre işle birlikte saklanır" },
+        { note: "Mehmet bey yine aradı: hazır mı?", card: "Takip bağlantısı", detail: "Müşteri durumu kendisi görür" },
+      ],
+    },
     theme: { bg: "#0b0e14", panel: "#171c26", text: "#f8fafc", muted: "#a3aebd", line: "#2b3447", accent: "#ffb020", accentText: "#140d00" },
     links: {
       demo: "https://autopro.kodleon.com/",
@@ -176,6 +193,16 @@ export const APPS: AppEntry[] = [
         ]
       }
     ],
+    story: {
+      choice: "Halı yıkama, çamaşırhane",
+      pain: "Yanlış yazılan adres, sabah çıkarılan rota, defterin arkasında kalan veresiye.",
+      screen: "panel",
+      lines: [
+        { note: "Ayşe H. 2 halı, adres neydi?", card: "Sipariş", detail: "Adres ve halılar kayıtlı" },
+        { note: "önce Kadıköy mü? şoföre sor", card: "Rota", detail: "Adresler en kısa sırada" },
+        { note: "borç 500 mü 600 mü?", card: "Veresiye", detail: "Kimden ne alınacağı ana ekranda" },
+      ],
+    },
     theme: { bg: "#0a5c99", panel: "#0d6cb3", text: "#ffffff", muted: "#d3e6f5", line: "#3f89c0", accent: "#ffffff", accentText: "#0a4a7a" },
     links: {
       demo: "https://laundry.kodleon.com/",
@@ -185,12 +212,14 @@ export const APPS: AppEntry[] = [
   },
 ];
 
-/** Sectors planned next. Not promises of a date: shown as "tell us if this is your trade" */
+/** Sectors planned next. Not promises of a date: requests for them decide the order */
 export const NEXT_SECTORS = [
-  { name: "Teknik servis", text: "Kombi, beyaz eşya, telefon" },
-  { name: "Lostra ve sneaker", text: "Ayakkabı ve çanta bakımı" },
-  { name: "Su ve tüp dağıtımı", text: "Sipariş ve dağıtım rotası" },
-  { name: "Evcil hayvan kuaförü", text: "Randevu ve müşteri kartı" },
+  { slug: "pet-kuafor", name: "Pet kuaförü", text: "Hayvan kartı, randevu, bakım karnesi" },
+  { slug: "oto-tamir", name: "Oto tamir", text: "İş emri, parça ve müşteri takibi" },
+  { slug: "teknik-servis", name: "Teknik servis", text: "Kombi, beyaz eşya, telefon" },
+  { slug: "temizlik", name: "Ev ve ofis temizliği", text: "Ekip planı ve düzenli müşteri" },
+  { slug: "lostra", name: "Lostra ve sneaker", text: "Ayakkabı ve çanta bakımı" },
+  { slug: "su-tup", name: "Su ve tüp dağıtımı", text: "Sipariş ve dağıtım rotası" },
 ];
 
 export const findApp = (slug: string) => APPS.find((a) => a.slug === slug);

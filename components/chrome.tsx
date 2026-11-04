@@ -32,8 +32,8 @@ export function Header() {
         </Link>
         <nav aria-label="Ana menü" className="hidden items-center gap-8 text-[15px] font-medium text-ink/80 md:flex">
           <Link href="/#uygulamalar" className="inline-flex min-h-11 items-center hover:text-ink">Uygulamalar</Link>
-          <Link href="/#tur" className="inline-flex min-h-11 items-center hover:text-ink">Nasıl çalışıyor</Link>
-          <Link href="/#sirada" className="inline-flex min-h-11 items-center hover:text-ink">Sıradaki sektörler</Link>
+          <Link href="/#nasil" className="inline-flex min-h-11 items-center hover:text-ink">Ücretsiz deneme</Link>
+          <Link href="/sektorler" className="inline-flex min-h-11 items-center hover:text-ink">Sektörler</Link>
         </nav>
         <div className="flex items-center gap-2">
         <a
@@ -62,6 +62,7 @@ export function Footer() {
         </div>
         <nav aria-label="Alt menü" className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-paper/70">
           <Link href="/#uygulamalar" className="inline-flex min-h-11 items-center hover:text-paper">Uygulamalar</Link>
+          <Link href="/sektorler" className="inline-flex min-h-11 items-center hover:text-paper">Sektörler</Link>
           <Link href="/gizlilik" className="inline-flex min-h-11 items-center hover:text-paper">Gizlilik</Link>
           <a href={whatsappLink("Merhaba, Kodleon hakkında bilgi almak istiyorum.")} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center hover:text-paper">WhatsApp</a>
         </nav>

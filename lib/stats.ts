@@ -1,7 +1,7 @@
 import "server-only";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { APPS } from "@/lib/apps";
+import { APPS, NEXT_SECTORS } from "@/lib/apps";
 
 // A plain counter instead of an analytics service: no cookies, no IP addresses, no visitor
 // identity. Only "how many times, on which day" is stored. It lives in a file, so it needs a
@@ -18,8 +18,12 @@ const FLUSH_MS = 5000;
 export const ALLOWED_KEYS = new Set([
   "view:/",
   "view:/gizlilik",
+  "view:/sektorler",
+  "click:deneme:genel",
+  "click:talep:diger",
   "click:whatsapp",
-  ...APPS.flatMap((a) => [`view:/uygulamalar/${a.slug}`, `click:demo:${a.slug}`, `click:kayit:${a.slug}`, `click:apk:${a.slug}`]),
+  ...APPS.flatMap((a) => [`view:/uygulamalar/${a.slug}`, `click:demo:${a.slug}`, `click:kayit:${a.slug}`, `click:apk:${a.slug}`, `click:deneme:${a.slug}`]),
+  ...NEXT_SECTORS.map((s) => `click:talep:${s.slug}`),
 ]);
 
 let cache: Stats | null = null;

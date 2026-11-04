@@ -1,22 +1,18 @@
 import Link from "next/link";
-import { WhatsAppIcon } from "@/components/chrome";
 import { JsonLd } from "@/components/json-ld";
+import { LedgerStory } from "@/components/ledger-story";
 import { Phone } from "@/components/phone";
 import { ProductTour } from "@/components/product-tour";
-import { APPS, NEXT_SECTORS, shotSrc, type AppEntry } from "@/lib/apps";
-import { SITE_URL, whatsappLink } from "@/lib/site";
+import { SectorRequests } from "@/components/sector-requests";
+import { TrialSteps } from "@/components/trial-steps";
+import { APPS, shotSrc, type AppEntry } from "@/lib/apps";
+import { SITE_URL } from "@/lib/site";
 
 const SHARED = [
   { title: "Sektörünüzün diliyle", text: "Halı yıkamada rota ve etiket, detailingde plaka ve hasar şeması. Ekranlar genel bir programdan uyarlanmaz, o işe göre kurulur." },
   { title: "Müşteri takip eder, telefon susar", text: "Müşteri üye olmadan bağlantıdan işinin durumunu görür. Bağlantıyı WhatsApp'tan tek dokunuşla gönderirsiniz." },
   { title: "Telefonda da, bilgisayarda da", text: "Tarayıcıdan açılır, Android uygulaması olarak kurulur. Ofis ve saha aynı bilgiyi görür." },
   { title: "Kasa içinde", text: "Tahsilat, gider ve net tek yerde. Gün sonunda defter tutmaya gerek kalmaz." },
-];
-
-const STEPS = [
-  { title: "Demoyu açın", text: "Örnek verilerle dolu hesaba tek dokunuşla girin. Kayıt ve kart bilgisi istemez." },
-  { title: "İşletmenizi kaydedin", text: "Beğendiyseniz kendi işletmenizi açın, fiyatlarınızı ve ekibinizi girin." },
-  { title: "Telefona kurun", text: "Android uygulamasını indirin, sahadaki ekip de aynı sistemle çalışsın." },
 ];
 
 function AppShowcase({ app, index }: { app: AppEntry; index: number }) {
@@ -57,7 +53,6 @@ function AppShowcase({ app, index }: { app: AppEntry; index: number }) {
 }
 
 export default function HomePage() {
-  const [first, second] = APPS;
   return (
     <>
       <JsonLd
@@ -69,42 +64,12 @@ export default function HomePage() {
           ],
         }}
       />
-      {/* Hero */}
-      <section className="overflow-hidden">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-6 pt-12 lg:grid-cols-[1.1fr_1fr] lg:px-8 lg:pb-16 lg:pt-20">
-          <div className="rise">
-            <h1 className="font-display text-[3.05rem] font-bold leading-[1] tracking-tight sm:text-7xl xl:text-[5.2rem]">
-              İşletmeniz için yazılım <span className="text-ember">çözümleri.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
-              Sipariş, müşteri, saha ve kasa takibi tek yerde. Telefondan da bilgisayardan da. Demoyu açın, kendi işinizle karşılaştırın.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="#uygulamalar" className="inline-flex min-h-13 items-center rounded-full bg-ink px-7 text-[17px] font-semibold text-paper transition hover:bg-ink/85">
-                Uygulamaları gör
-              </Link>
-              <a
-                href={whatsappLink("Merhaba, işletmem için uygulamalarınız hakkında bilgi almak istiyorum.")}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-13 items-center gap-2 rounded-full border border-ink/20 bg-card px-7 text-[17px] font-semibold transition hover:border-ink/50"
-              >
-                <WhatsAppIcon />
-                WhatsApp'tan sorun
-              </a>
-            </div>
-          </div>
-          <div className="rise relative mx-auto h-[420px] w-full max-w-[520px] sm:h-[560px]" style={{ animationDelay: "120ms" }}>
-            <div className="absolute inset-x-6 bottom-0 top-16 rounded-[2.5rem] bg-[#ece7dc]" aria-hidden="true" />
-            <Phone src={shotSrc(second, second.shots[0].file)} alt={`${second.name} ana ekranı`} priority sizes="262px" className="absolute left-[4%] top-14 w-[46%] -rotate-[5deg] sm:w-[262px]" />
-            <Phone src={shotSrc(first, first.shots[0].file)} alt={`${first.name} Bugün ekranı`} priority sizes="272px" className="absolute right-[4%] top-0 w-[48%] rotate-[4deg] sm:w-[272px]" />
-          </div>
-        </div>
-      </section>
+      <LedgerStory />
+      <TrialSteps />
 
       {/* Apps */}
       <section id="uygulamalar" className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
-        <h2 className="max-w-2xl font-display text-4xl font-bold tracking-tight sm:text-5xl">Hazır uygulamalar</h2>
+        <h2 className="max-w-2xl font-display text-4xl font-bold tracking-tight sm:text-5xl">Sektörünüze özel çözümler</h2>
         <p className="mt-3 max-w-xl text-lg text-muted">Her biri kendi sektörüne göre yapıldı. Demo hesapları örnek verilerle dolu, tek dokunuşla açılır.</p>
         <div className="mt-10 space-y-6">
           {APPS.map((app, i) => (
@@ -137,46 +102,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* How */}
-      <section id="nasil" className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
-        <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">Üç adımda başlayın</h2>
-        <ol className="mt-10 grid gap-5 md:grid-cols-3">
-          {STEPS.map((s, i) => (
-            <li key={s.title} className="rounded-3xl bg-[#ece7dc] p-7">
-              <span className="font-display text-5xl font-bold text-ember">{i + 1}</span>
-              <h3 className="mt-5 font-display text-2xl font-semibold">{s.title}</h3>
-              <p className="mt-2 leading-relaxed text-muted">{s.text}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* Next sectors */}
-      <section id="sirada" className="bg-ink text-paper">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-2 lg:px-8 lg:py-20">
-          <div>
-            <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">Sizin sektörünüz listede yok mu?</h2>
-            <p className="mt-4 max-w-md text-lg text-paper/70">Yeni uygulamalar üzerinde çalışıyoruz. Ne iş yaptığınızı yazın; sırayı işletmelerden gelen ihtiyaçlar belirlesin.</p>
-            <a
-              href={whatsappLink("Merhaba, sektörüm için uygulama yapıyor musunuz? İşim: ")}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-7 inline-flex min-h-13 items-center gap-2 rounded-full bg-paper px-7 text-[17px] font-semibold text-ink transition hover:bg-white"
-            >
-              <WhatsAppIcon />
-              Sektörünüzü yazın
-            </a>
-          </div>
-          <ul className="divide-y divide-paper/15 border-y border-paper/15">
-            {NEXT_SECTORS.map((s) => (
-              <li key={s.name} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 py-5">
-                <span className="font-display text-2xl font-semibold">{s.name}</span>
-                <span className="text-paper/60">{s.text}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <SectorRequests>
+        <p className="mt-4">
+          <Link href="/sektorler" className="inline-flex min-h-11 items-center font-semibold underline underline-offset-4">Tüm sektörler</Link>
+        </p>
+      </SectorRequests>
     </>
   );
 }

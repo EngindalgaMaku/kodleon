@@ -44,9 +44,9 @@ export function MobileMenu() {
                 </Link>
               </li>
             ))}
+            <li><Link onClick={close} href="/sektorler" className="flex min-h-13 items-center">Sektörler</Link></li>
+            <li><Link onClick={close} href="/#nasil" className="flex min-h-13 items-center">Ücretsiz deneme</Link></li>
             <li><Link onClick={close} href="/#tur" className="flex min-h-13 items-center">Nasıl çalışıyor</Link></li>
-            <li><Link onClick={close} href="/#nasil" className="flex min-h-13 items-center">Nasıl başlanır</Link></li>
-            <li><Link onClick={close} href="/#sirada" className="flex min-h-13 items-center">Sıradaki sektörler</Link></li>
           </ul>
         </nav>
       )}

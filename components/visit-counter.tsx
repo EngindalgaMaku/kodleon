@@ -26,8 +26,9 @@ export function VisitCounter() {
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      const href = (e.target as Element).closest?.("a[href]")?.getAttribute("href");
-      const key = href && clickKey(href);
+      const link = (e.target as Element).closest?.<HTMLAnchorElement>("a[href]");
+      const href = link?.getAttribute("href");
+      const key = link?.dataset.hit ? `click:${link.dataset.hit}` : href && clickKey(href);
       if (key) send(key);
     };
     document.addEventListener("click", onClick);
