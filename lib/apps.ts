@@ -206,7 +206,7 @@ export const APPS: AppEntry[] = [
     theme: { bg: "#0a5c99", panel: "#0d6cb3", text: "#ffffff", muted: "#d3e6f5", line: "#3f89c0", accent: "#ffffff", accentText: "#0a4a7a" },
     links: {
       demo: "https://laundry.kodleon.com/",
-      signUp: "https://laundry.kodleon.com/",
+      signUp: "https://laundry.kodleon.com/?kayit=1",
       apk: "https://laundry.kodleon.com/LaundryPro.apk",
     },
   },

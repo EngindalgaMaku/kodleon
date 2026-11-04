@@ -1,13 +1,12 @@
-import { WhatsAppIcon } from "@/components/chrome";
-import { trialLink } from "@/lib/site";
+import Link from "next/link";
 
 const STEPS = [
   { title: "Demoyu inceleyin", text: "Örnek verilerle dolu hesaba tek dokunuşla girin. Üyelik gerekmez." },
-  { title: "Bir ay ücretsiz isteyin", text: "WhatsApp'tan yazın, hesabınızı birlikte açalım. Kart bilgisi istemiyoruz." },
-  { title: "Beğenirseniz devam edin", text: "İşinize yaradıysa aylık düşük bir ücretle kullanmaya devam edin. Beğenmezseniz hiçbir şey ödemezsiniz." },
+  { title: "Kaydolun, bir ay ücretsiz kullanın", text: "Kendi işletmenizi açın, bütün özellikler açık olsun. Kart bilgisi istemiyoruz." },
+  { title: "Beğenirseniz devam edin", text: "İşinize yaradıysa aylık düşük bir ücretle kullanmaya devam edin. Beğenmezseniz hiçbir şey ödemezsiniz; hesabınız kısıtlı moda geçer." },
 ];
 
-export function TrialSteps() {
+export function TrialSteps({ pickSector = true }: { pickSector?: boolean }) {
   return (
     <section id="nasil" className="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
       <h2 className="max-w-2xl font-display text-4xl font-bold tracking-tight sm:text-5xl">Önce deneyin, sonra karar verin</h2>
@@ -20,16 +19,11 @@ export function TrialSteps() {
           </li>
         ))}
       </ol>
-      <a
-        href={trialLink()}
-        data-hit="deneme:genel"
-        target="_blank"
-        rel="noreferrer"
-        className="mt-8 inline-flex min-h-13 items-center gap-2 rounded-full bg-ink px-7 text-[17px] font-semibold text-paper transition hover:bg-ink/85"
-      >
-        <WhatsAppIcon />
-        1 ay ücretsiz isteyin
-      </a>
+      {pickSector && (
+        <Link href="/sektorler" className="mt-8 inline-flex min-h-13 items-center rounded-full bg-ink px-7 text-[17px] font-semibold text-paper transition hover:bg-ink/85">
+          Sektörünüzü seçin
+        </Link>
+      )}
     </section>
   );
 }

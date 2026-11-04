@@ -2,10 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { WhatsAppIcon } from "@/components/chrome";
 import { Phone } from "@/components/phone";
 import { APPS, shotSrc } from "@/lib/apps";
-import { trialLink } from "@/lib/site";
 
 // The opening of the home page. A notebook page turns into the app's records, one line at a
 // time, and the visitor picks their own trade. The notes are made-up examples; every card
@@ -57,7 +55,7 @@ export function LedgerStory() {
             Hâlâ <span className="text-ember">defterle</span> mi çalışıyorsunuz?
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
-            Sektörünüze özel programı önce inceleyin, bir ay ücretsiz kullanın, sonra karar verin.
+            Sektörünüze özel programı önce inceleyin, kaydolup bir ay ücretsiz kullanın, sonra karar verin.
           </p>
 
           <div className="mt-7">
@@ -87,15 +85,8 @@ export function LedgerStory() {
             <a href={app.links.demo} className="inline-flex min-h-13 items-center rounded-full bg-ink px-7 text-[17px] font-semibold text-paper transition hover:bg-ink/85">
               {app.name} demosunu açın
             </a>
-            <a
-              href={trialLink(app.name)}
-              data-hit={`deneme:${app.slug}`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-13 items-center gap-2 rounded-full border border-ink/20 bg-card px-7 text-[17px] font-semibold transition hover:border-ink/50"
-            >
-              <WhatsAppIcon />
-              1 ay ücretsiz isteyin
+            <a href={app.links.signUp} className="inline-flex min-h-13 items-center rounded-full border border-ink/20 bg-card px-7 text-[17px] font-semibold transition hover:border-ink/50">
+              Kaydolun, 1 ay ücretsiz
             </a>
           </div>
         </div>

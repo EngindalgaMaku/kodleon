@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { WhatsAppIcon } from "@/components/chrome";
 import { SectorRequests } from "@/components/sector-requests";
 import { TrialSteps } from "@/components/trial-steps";
 import { APPS } from "@/lib/apps";
-import { trialLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Sektörler",
-  description: "Hazır uygulamalar ve sıradaki sektörler. Demoyu inceleyin, bir ay ücretsiz kullanın ya da kendi sektörünüz için WhatsApp'tan talepte bulunun.",
+  description: "Hazır uygulamalar ve sıradaki sektörler. Demoyu inceleyin, kaydolup bir ay ücretsiz kullanın ya da kendi sektörünüz için WhatsApp'tan talepte bulunun.",
   alternates: { canonical: "/sektorler" },
 };
 
@@ -29,9 +27,8 @@ export default function SectorsPage() {
                 <a href={app.links.demo} style={{ background: app.theme.accent, color: app.theme.accentText }} className="inline-flex min-h-12 items-center rounded-full px-6 font-semibold transition hover:opacity-90">
                   Demoyu dene
                 </a>
-                <a href={trialLink(app.name)} data-hit={`deneme:${app.slug}`} target="_blank" rel="noreferrer" style={{ borderColor: app.theme.line }} className="inline-flex min-h-12 items-center gap-2 rounded-full border px-5 font-semibold transition hover:bg-white/10">
-                  <WhatsAppIcon />
-                  1 ay ücretsiz iste
+                <a href={app.links.signUp} style={{ borderColor: app.theme.line }} className="inline-flex min-h-12 items-center rounded-full border px-5 font-semibold transition hover:bg-white/10">
+                  Kaydolun, 1 ay ücretsiz
                 </a>
               </div>
               <Link href={`/uygulamalar/${app.slug}`} style={{ color: app.theme.muted }} className="mt-3 inline-flex min-h-11 items-center self-start font-medium underline-offset-4 hover:underline">
@@ -42,7 +39,7 @@ export default function SectorsPage() {
         </ul>
       </section>
       <SectorRequests />
-      <TrialSteps />
+      <TrialSteps pickSector={false} />
     </>
   );
 }

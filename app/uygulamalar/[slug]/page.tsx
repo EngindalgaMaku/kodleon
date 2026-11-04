@@ -5,7 +5,7 @@ import { WhatsAppIcon } from "@/components/chrome";
 import { JsonLd } from "@/components/json-ld";
 import { Phone } from "@/components/phone";
 import { APPS, findApp, shotSrc } from "@/lib/apps";
-import { SITE_URL, trialLink, whatsappLink } from "@/lib/site";
+import { SITE_URL, whatsappLink } from "@/lib/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -56,8 +56,8 @@ export default async function AppPage({ params }: Props) {
               <a href={app.links.demo} style={{ background: theme.accent, color: theme.accentText }} className="inline-flex min-h-13 items-center rounded-full px-7 text-[17px] font-semibold transition hover:opacity-90">
                 Demoyu dene
               </a>
-              <a href={trialLink(app.name)} data-hit={`deneme:${app.slug}`} target="_blank" rel="noreferrer" style={{ borderColor: theme.line }} className="inline-flex min-h-13 items-center rounded-full border px-7 text-[17px] font-semibold transition hover:bg-white/10">
-                1 ay ücretsiz isteyin
+              <a href={app.links.signUp} style={{ borderColor: theme.line }} className="inline-flex min-h-13 items-center rounded-full border px-7 text-[17px] font-semibold transition hover:bg-white/10">
+                Kaydolun, 1 ay ücretsiz
               </a>
             </div>
             <div style={{ color: theme.muted }} className="mt-4 flex flex-wrap gap-x-6 text-[15px] font-medium">
@@ -125,12 +125,12 @@ export default async function AppPage({ params }: Props) {
         </div>
         <div style={{ background: theme.bg, color: theme.text }} className="rounded-[2rem] p-8 sm:p-10">
           <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">Önce deneyin</h2>
-          <p style={{ color: theme.muted }} className="mt-3 text-lg">Demoyu inceleyin, bir ay ücretsiz kullanın. Beğenirseniz aylık düşük bir ücretle devam edin.</p>
+          <p style={{ color: theme.muted }} className="mt-3 text-lg">Demoyu inceleyin, kaydolup bir ay ücretsiz kullanın. Beğenirseniz aylık düşük bir ücretle devam edin.</p>
           <a href={app.links.demo} style={{ background: theme.accent, color: theme.accentText }} className="mt-6 mr-3 inline-flex min-h-13 items-center rounded-full px-7 text-[17px] font-semibold transition hover:opacity-90">
             Demoyu dene
           </a>
-          <a href={trialLink(app.name)} data-hit={`deneme:${app.slug}`} target="_blank" rel="noreferrer" style={{ borderColor: theme.line }} className="mt-6 inline-flex min-h-13 items-center rounded-full border px-7 text-[17px] font-semibold transition hover:bg-white/10">
-            1 ay ücretsiz isteyin
+          <a href={app.links.signUp} style={{ borderColor: theme.line }} className="mt-6 inline-flex min-h-13 items-center rounded-full border px-7 text-[17px] font-semibold transition hover:bg-white/10">
+            Kaydolun, 1 ay ücretsiz
           </a>
         </div>
       </section>
@@ -142,7 +142,7 @@ export default async function AppPage({ params }: Props) {
             {[
               ["Kurulum gerekiyor mu?", `Hayır. ${app.name} tarayıcıdan açılır, bilgisayara program kurmanız gerekmez. Android telefonlara uygulama olarak da kurulabilir.`],
               ["Demoyu denemek için kayıt olmam gerekir mi?", "Hayır. Demo hesabı örnek verilerle dolu, dokununca açılır. Demoya girilen veriler her gece silinir, gerçek bilgi girmeyin."],
-              ["Kendi işletmemde nasıl denerim?", "WhatsApp'tan yazın, bir ay ücretsiz kullanacağınız hesabı birlikte açalım. Kart bilgisi istemiyoruz. Beğenirseniz aylık düşük bir ücretle devam edersiniz, beğenmezseniz hiçbir şey ödemezsiniz."],
+              ["Kendi işletmemde nasıl denerim?", "Kaydolun, bir ay bütün özelliklerle ücretsiz kullanın. Kart bilgisi istemiyoruz. Süre bitince hesabınız kapanmaz, kısıtlı moda geçer. Beğenirseniz aylık düşük bir ücretle tam kullanıma devam edersiniz, beğenmezseniz hiçbir şey ödemezsiniz."],
               ["iPhone'da çalışır mı?", "Telefonun tarayıcısından kullanılabilir. Mağazadan kurulan ayrı bir iPhone uygulaması şimdilik yok."],
               ["Birden fazla kişi kullanabilir mi?", "Evet. Sahibi, çalışanları ve sahadaki ekibi kendi hesabıyla girer, herkes aynı bilgiyi görür."],
             ].map(([q, a]) => (

@@ -19,10 +19,9 @@ export const ALLOWED_KEYS = new Set([
   "view:/",
   "view:/gizlilik",
   "view:/sektorler",
-  "click:deneme:genel",
   "click:talep:diger",
   "click:whatsapp",
-  ...APPS.flatMap((a) => [`view:/uygulamalar/${a.slug}`, `click:demo:${a.slug}`, `click:kayit:${a.slug}`, `click:apk:${a.slug}`, `click:deneme:${a.slug}`]),
+  ...APPS.flatMap((a) => [`view:/uygulamalar/${a.slug}`, `click:demo:${a.slug}`, `click:kayit:${a.slug}`, `click:apk:${a.slug}`]),
   ...NEXT_SECTORS.map((s) => `click:talep:${s.slug}`),
 ]);
 
