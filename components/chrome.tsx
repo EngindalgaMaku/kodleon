@@ -54,7 +54,7 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-paper">
+    <footer className="border-t border-paper/10 bg-ink text-paper">
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-12 sm:flex-row sm:items-center sm:justify-between lg:px-8">
         <div>
           <Logo light />

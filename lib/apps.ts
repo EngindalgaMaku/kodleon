@@ -285,11 +285,11 @@ export const APPS: AppEntry[] = [
 
 /** Sectors planned next. Not promises of a date: requests for them decide the order */
 export const NEXT_SECTORS = [
-  { slug: "oto-tamir", name: "Oto tamir", text: "İş emri, parça ve müşteri takibi" },
-  { slug: "teknik-servis", name: "Teknik servis", text: "Kombi, beyaz eşya, telefon" },
-  { slug: "temizlik", name: "Ev ve ofis temizliği", text: "Ekip planı ve düzenli müşteri" },
-  { slug: "lostra", name: "Lostra ve sneaker", text: "Ayakkabı ve çanta bakımı" },
-  { slug: "su-tup", name: "Su ve tüp dağıtımı", text: "Sipariş ve dağıtım rotası" },
+  { slug: "oto-tamir", name: "Oto tamir" },
+  { slug: "teknik-servis", name: "Teknik servis" },
+  { slug: "temizlik", name: "Ev ve ofis temizliği" },
+  { slug: "lostra", name: "Lostra ve sneaker" },
+  { slug: "su-tup", name: "Su ve tüp dağıtımı" },
 ];
 
 export const findApp = (slug: string) => APPS.find((a) => a.slug === slug);

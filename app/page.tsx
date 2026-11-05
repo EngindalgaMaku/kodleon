@@ -114,11 +114,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectorRequests>
-        <p className="mt-4">
-          <Link href="/sektorler" className="inline-flex min-h-11 items-center font-semibold underline underline-offset-4">Tüm sektörler</Link>
-        </p>
-      </SectorRequests>
+      <SectorRequests />
     </>
   );
 }
